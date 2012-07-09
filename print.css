@@ -23,7 +23,7 @@ body {
     
     margin:20px;
     font-family: "Times New Roman", "Baskerville", "Times New Roman", serif;
-	line-height: 25pt;
+	line-height: 19pt;
 	font-size: 14pt;
 	text-align: justify;
 	counter-reset: figcaption;
@@ -328,7 +328,7 @@ body {
 	text-align: justify;
 	font-family: "Times New Roman", "Times", serif;
 	font-size: 11pt;
-	line-height: 20pt;
+	line-height: 15pt;
 	
 	display: block;
     page: main;

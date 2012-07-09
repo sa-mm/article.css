@@ -35,8 +35,12 @@ writing a CSS file that will take a HTML5 file from Pandoc and, when
 printed, will look as good as `article.cls` using LaTeX.
 
 The file `print.css` is the beginnings of this CSS file. To use it, just
-call Pandoc with the `-css` option, open the resulting HTML in any
-modern browser[^browser] and print to PDF.
+call Pandoc with the `-css` option, open the resulting HTML in a browser
+and print to PDF. Ideally, use [Opera](http://www.opera.com/), and even
+better, the beta version [Opera
+Next](http://www.opera.com/browser/next/)  -- these are some of the only
+browsers that support the `@page` CSS selector.
+
 
           pandoc input.md -so out.html -t HTML5 						     
              --bibliography="/path/to/BibTeX/library.bib"      
@@ -60,6 +64,11 @@ I've added:
 - Times New Roman for the body; Helvetica for the headings.
 - Auto-numbering of figures (using CSS counters)
 - Better-than-default page margins (though work needed).
+
+Show me!
+--------
+
+![](https://github.com/ewancarr/printCSS/blob/master/example.jpg)
 
 
 TODO
@@ -85,8 +94,10 @@ now, doesn't even come close to replicating LaTeX functionality. I'm
 writing this partly to improve my understanding of CSS and partly just to see if it's
 possible. Check back in a few years!
 
+Contribute!
+-----------
+
+In case it's not obvious enough, **I'm really bad at CSS**, and don't
+really know what I'm doing. All contributions are welcome!
 
 
-[^browser]: Ideally, use Opera, and even better, [Opera
-Next](http://www.opera.com/browser/next/) the beta version -- these are
-some of the only browsers that support the `@page` CSS selector.
