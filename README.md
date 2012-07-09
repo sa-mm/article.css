@@ -36,7 +36,7 @@ printed, will look as good as `article.cls` using LaTeX.
 
 The file `print.css` is the beginnings of this CSS file. To use it, just
 call Pandoc with the `-css` option, open the resulting HTML in any
-modern browser and print to PDF.
+modern browser[^browser] and print to PDF.
 
           pandoc input.md -so out.html -t HTML5 						     
              --bibliography="/path/to/BibTeX/library.bib"      
@@ -69,6 +69,9 @@ I'll work on these as/when I find time/motivation:
 
 - Add automatic page numbering;
 - Figure out page breaks in CSS;
+- Place image caption above the image  
+	- Doesn't look possible in CSS; requires placing `figcaption` above the 
+	content, which would mean adjusting the HTML from Pandoc. 
 - Improve page layout (find `article.cls` defaults)
 - Investigate footnotes (probably impossible, but worth a check)
 - Check that MathML output works.
@@ -83,3 +86,7 @@ writing this partly to improve my understanding of CSS and partly just to see if
 possible. Check back in a few years!
 
 
+
+[^browser]: Ideally, use Opera, and even better, [Opera
+Next](http://www.opera.com/browser/next/) the beta version -- these are
+some of the only browsers that support the `@page` CSS selector.

@@ -13,66 +13,38 @@
  * See https://gist.github.com/3078027
  */
 
+
+/* Basics                       */
+/* ===========================  */
+
 body {
-    background-color: #f2f2f2;
+    background-color: white;
     color: #3c3c3c;
     
     margin:20px;
-    
-    /* Change font size below */
-	font-size: 1.7em; 
-	line-height: 1.4em;
-	
-	/* Change font below */
-
-	/* Sans-serif fonts */	
-	font-family: "Merriweather", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
+    font-family: "Times New Roman", "Baskerville", "Times New Roman", serif;
 	line-height: 25pt;
 	font-size: 14pt;
-	
-	/* Serif fonts */
-	/*
-	font-family: "Cochin", "Baskerville", "Georgia", serif;
-	-webkit-font-smoothing: subpixel-antialiased;
-	*/
-	
-	/* Monospaced fonts */
-	/*
-	font-family: "Courier New", Menlo, Monaco, mono;
-	-webkit-font-smoothing: antialiased;
-	*/
+	text-align: justify;
 	counter-reset: figcaption;
 }
- 
 
-figcaption:before {
-content: "Figure "  counter(figcaption) ": " attr(title);
-counter-increment: figcaption;
-/* display: block; */
-/* font-size: 10px; */
-font-weight: bold;
-/* margin-top: 5px; */
-/* margin-bottom: 20px; */
-/* color: black; */
- */
-}
-
-
-a {
+a { 
     color: #308bd8;
     text-decoration:none;
 }
 a:hover {
     text-decoration: underline;
 }
+
 /* headings */
 h1, h2 {
     line-height:1.2em;
-    margin-top:32px;
-    margin-bottom:20px;
-    padding-bottom: 20px;
-    font-family: "Open Sans", "Helvetica";
+    margin-top:40px;
+    padding-bottom: 5px;
+    font-family: "Arial", "Helvetica", "Arial";
+    font-weight: 700;
+    font-size: 18pt;
 }
 h1:first-child {
     margin-top:0;
@@ -80,7 +52,8 @@ h1:first-child {
 }
 h2.author {
 	text-align: center;
-	font-weight: 400;
+	font-weight: normal;
+	font-size: 14pt;
 }
 h3, h4, h5, h6 {
     margin-top:12px;
@@ -107,6 +80,8 @@ p:last-child {
     height: 1px;
     -webkit-box-shadow:0px 1px 0px rgba(255, 255, 255, 0.75);
 }
+
+
 /* lists */
 ol {
     list-style: outside decimal;
@@ -146,6 +121,24 @@ dl dd:last-child, dl:last-child {
     margin-bottom:0;
 }
 /* end of lists */
+
+
+
+/* Figure numbering             */
+/* ===========================  */
+
+figcaption:before {
+content: "Figure "  counter(figcaption) ": " attr(title);
+counter-increment: figcaption;
+/* display: block; */
+/* font-size: 10px; */
+font-weight: bold;
+/* margin-top: 5px; */
+/* margin-bottom: 20px; */
+/* color: black; */
+ */
+}
+
 pre {
     white-space: pre-wrap;
     width: 96%;
@@ -175,10 +168,10 @@ blockquote {
     margin-left: 20px;
     margin-right: 0;
     margin-bottom: 20px;
-    width: 96%;
+    width: 90%;
     padding: 0 10px;
     border-left: none;
-    color: #777;
+    color: black;
 }
 table {
     margin-left: auto;
@@ -325,54 +318,88 @@ mark {
 }
 
 /* Printing support */
-@page {
- 		margin: 40pt 30pt 40pt 30pt;
-     @bottom {
-        counter(page);
-      }
- 
-    }
-		  
+
 @media print {
 	
-	body {
-		overflow: auto;
-		margin-left: 70px;
-		margin-right: 70px;
-		padding-top:20px;
-		padding-bottom:20px;
-		text-align: justify;
-		font-family: "Times New Roman", "Times", serif;
-		font-size: 11pt;
+body {
+	overflow: auto;
+	padding-left: 5%;
+	padding-right: 5%;
+	text-align: justify;
+	font-family: "Times New Roman", "Times", serif;
+	font-size: 11pt;
+	line-height: 20pt;
+	
+	display: block;
+    page: main;
+    counter-reset: page 1
+
 	}
     h1, h2 {     
-        line-height:1.2em;     
-        margin-top:32px;     
-        margin-bottom:20px;     
-        padding-bottom: 20px;     
-        font-family: "Helvetica Neue", "Helvetica", "Arial", sans serif;     
+	    line-height:1.2em;
+	    margin-top:40px;
+	    padding-bottom: 5px;
+        font-family: "Helvetica", "Arial", sans serif;     
         text-align: left;
-    }     
+        font-weight: 100;
+    }
+    h1:first-child {
+    margin-top:100;
+    text-align: center;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 20%;
+	}
+     
     img, pre, blockquote, table, figure {
         page-break-inside: avoid;
     }
+	blockquote {
+    	margin-left: 20px;
+	    margin-right: 20px;
+	    margin-bottom: 20px;
+	    width: 90%;
+	    color: black;
+	}
 
-    
+    h3, h4, h5, h6, h7 {
+        font-family: "Helvetica Neue", "Arial", sans serif;     
+        text-align: left;
+	}
+	
     pre, code {
 		border: none !important;
 	}
-/* 
+
 	#wrapper {
         background: #fff;
         position: relative;
         text-indent: 0px;
-        padding: 10px;
-        font-size:100%; */
+/*         padding: 20px; */
+/*         font-size:80%; */
+/*         padding-top: 100px; */
+		margin-top:40%;
     }
 
     .footnotes {
         page-break-before: always;
     }
     .page-break {display:block; page-break-before: always; }
-    img {max-width: 100%;}
+
+    img {
+    	max-width: 100%;
+    }
+  
+ 
+
+
+@page {
+	@top { content: string(chapter-title) } 
+    @bottom {
+        content: counter(page)
+    }
+    size:8.5in 11in; 
+    margin: 2cm;
+    
 }
+
