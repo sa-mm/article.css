@@ -68,7 +68,7 @@ I've added:
 Show me!
 --------
 
-![](https://github.com/ewancarr/printCSS/blob/master/example.jpg)
+![](example.jpg)
 
 
 TODO
