@@ -66,11 +66,6 @@ I've added:
 - Auto-numbering of figures (using CSS counters)
 - Better-than-default page margins (though work needed).
 
-Show me!
---------
-
-![](https://github.com/ewancarr/printCSS/raw/master/example.jpg)
-
 
 TODO
 ----
@@ -86,6 +81,7 @@ I'll work on these as/when I find time/motivation:
 - Investigate footnotes (probably impossible, but worth a check)
 - Check that MathML output works.
 - Check table support; improve table CSS.
+- Fix line spacing around footnote markers
 
 Who's it for?
 -------------

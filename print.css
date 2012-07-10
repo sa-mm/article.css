@@ -130,13 +130,7 @@ dl dd:last-child, dl:last-child {
 figcaption:before {
 content: "Figure "  counter(figcaption) ": " attr(title);
 counter-increment: figcaption;
-/* display: block; */
-/* font-size: 10px; */
 font-weight: bold;
-/* margin-top: 5px; */
-/* margin-bottom: 20px; */
-/* color: black; */
- */
 }
 
 pre {
@@ -177,8 +171,6 @@ table {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 24px;
-/*     border-bottom: 1px solid #ddd; */
-/*     border-right: 1px solid #ddd; */
     border-spacing: 0;
 }
 table th {
@@ -188,8 +180,6 @@ table th {
     border-left: none;
     border-right: none;
     border-bottom: 1px solid black;
-}
-table tr {
 }
 table td {
     padding: 3px 10px;
@@ -336,10 +326,10 @@ body {
 	
 	display: block;
     page: main;
-    counter-reset: page 1
+    counter-reset: page 1;
     color: black;
-
 	}
+	
     h1, h2 {     
 	    line-height:1.2em;
 	    margin-top:40px;
@@ -348,17 +338,19 @@ body {
         text-align: left;
         font-weight: 100;
     }
+    
     h1:first-child {
-    margin-top:100;
-    text-align: center;
-    padding-left: 10%;
-    padding-right: 10%;
-    padding-top: 20%;
+    	margin-top:100;
+	    text-align: center;
+	    padding-left: 10%;
+	    padding-right: 10%;
+	    padding-top: 20%;
 	}
      
     img, pre, blockquote, table, figure {
         page-break-inside: avoid;
     }
+    
 	blockquote {
     	margin-left: 20px;
 	    margin-right: 20px;
@@ -380,9 +372,6 @@ body {
         background: #fff;
         position: relative;
         text-indent: 0px;
-/*         padding: 20px; */
-/*         font-size:80%; */
-/*         padding-top: 100px; */
 		margin-top:40%;
     }
 
@@ -394,17 +383,13 @@ body {
     img {
     	max-width: 100%;
     }
-  
- 
-
+    
+}
 
 @page {
 	@top { content: string(chapter-title) } 
-    @bottom {
-        content: counter(page)
-    }
+    @bottom { content: counter(page) }
     size:8.5in 11in; 
     margin: 2cm;
-    
 }
 
