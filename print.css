@@ -19,7 +19,7 @@
 
 body {
     background-color: white;
-    color: #3c3c3c;
+    color: black;
     
     margin:20px;
     font-family: "Times New Roman", "Baskerville", "Times New Roman", serif;
@@ -75,7 +75,7 @@ p:last-child {
     width: 100%;
     margin: 3em auto;
     border: 0;
-    color: #eee;
+    color: black;
     background-color: #ccc;
     height: 1px;
     -webkit-box-shadow:0px 1px 0px rgba(255, 255, 255, 0.75);
@@ -177,27 +177,31 @@ table {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 24px;
-    border-bottom: 1px solid #ddd;
-    border-right: 1px solid #ddd;
+/*     border-bottom: 1px solid #ddd; */
+/*     border-right: 1px solid #ddd; */
     border-spacing: 0;
 }
 table th {
     padding: 3px 10px;
-    background-color: #eee;
-    border-top: 1px solid #ddd;
-    border-left: 1px solid #ddd;
+    background-color: white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid black;
 }
 table tr {
 }
 table td {
     padding: 3px 10px;
-    border-top: 1px solid #ddd;
-    border-left: 1px solid #ddd;
+    border-top: none;
+    border-left: none;
+    border-bottom: none;
+    border-right: none;
 }
 caption {
     font-size: 1.2em;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
 }
 figure {
     display: block;
@@ -333,6 +337,7 @@ body {
 	display: block;
     page: main;
     counter-reset: page 1
+    color: black;
 
 	}
     h1, h2 {     

@@ -18,7 +18,8 @@ not that I'm aware of), I'm only using LaTeX to produce a good-looking
 PDF document.
 
 My question here then: **can I make a HTML document that, when printed,
-looks as good as a document produced using LaTeX?**
+looks as good as a document produced using LaTeX?** The answer is almost
+certainly **no**, but I want to see how close I can get.
 
 Until recently I was reliant on LaTeX for it's BibTeX support. Since
 Pandoc came out with support for
