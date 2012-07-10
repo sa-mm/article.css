@@ -221,6 +221,13 @@ mark {
     font-size: 0.8em;
     vertical-align: super;
 }
+
+sup {
+        font-size: 0.8em;
+        vertical-align: super;
+        line-height: 0;
+    }
+
 .footnotes ol {
     font-weight: bold;
 }
