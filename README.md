@@ -86,13 +86,21 @@ Features
    can be easily changed).
  - Better-than-default page margins (though more work needed -- ideally would like 
    to replicate `article.cls` defaults).
+   
+The CSS will also recognise the following: 
+
+ - A `<h2>` header with the content "Abstract" will be centred and in small-caps.
+ - A `<h2>` header with the content "References" or "Bibliography" will be surrounded
+   by page breaks.
 
 
 
 What's next?
 ------------
 
-- ~~Add automatic page numbering;~~ DONE.
+These are things I'd *like* to get working; I've no idea if they're actually possible.
+
+- ~~Add automatic page numbering;~~
 - Figure out page breaks in CSS;
 - Place image caption above the image (Doesn't look possible in CSS; 
   requires placing `figcaption` above the content, which would mean 
@@ -102,6 +110,8 @@ What's next?
 - Check that MathML output works.
 - Improve table CSS.
 - ~~Fix line spacing around footnote markers~~ DONE
+- ~~Auto-recognise first `h2` titled "Abstract" and format accordingly.~~
+- Recognise first paragraph following `h2#abstract` and increase margins.
 - ???
 
 Contribute!

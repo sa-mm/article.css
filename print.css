@@ -56,6 +56,12 @@ h2.author {
 	font-weight: normal;
 	font-size: 14pt;
 }
+
+h2#abstract {
+	text-align: center;
+	font-variant: small-caps;
+}
+
 h3, h4, h5, h6 {
     margin-top:12px;
     margin-bottom:0;
@@ -65,7 +71,8 @@ h5, h6 {
     font-size:0.9em;
     line-height:1.0em;
 }
-/* end of headings */
+
+
 p {
     margin:0 0 24px 0;
 }
@@ -350,7 +357,7 @@ body {
     color: black;
     text-decoration:none;
 	}
-	h1 {
+	h1, h2 {
 	  string-set: header content();
 	}
     h1, h2 {     
@@ -412,6 +419,16 @@ body {
     	max-width: 100%;
     }
     
+}
+
+h2#references {
+page-break-before: always;
+page-break-after: always;
+}
+
+h2#bibliography {
+page-break-before: always;
+page-break-after: always;
 }
 
 @page {
