@@ -46,7 +46,10 @@ Usage
 Just call `pandoc` the `-css` option. I'm using the following script:
 
      #!/bin/sh
-     pandoc *.md -t HTML5 --bibliography="/Users/ewancarr/Documents/Work/Bibliography/BibTeX/library.bib" --csl="/Users/ewancarr/Dropbox/Code/Pandoc/Styles/harvard3.csl" -s --smart --ascii --css="/Users/ewancarr/Dropbox/Code/Projects/print.css/print.css" > draft.html
+     pandoc *.md -t HTML5 --bibliography="/Users/ewancarr/Documents/Work/Bibliography/BibTeX/library.bib" 
+     	--csl="/Users/ewancarr/Dropbox/Code/Pandoc/Styles/harvard3.csl" 
+     	--css="/Users/ewancarr/Dropbox/Code/Projects/print.css/print.css"
+     	-s --smart --ascii > draft.html
      
      prince draft.html
      open draft.pdf -a "/Applications/Skim.app"
@@ -63,7 +66,7 @@ I'm also investigating using [Prince](http://www.princexml.com/) to convert
 HTML to PDF. Prince has several advantages:
 
  1. The default output from Prince looks *much* better; 
- 2. Prince supports more CSS `@page` features than Webkik, Presto (Opera) or Gecko (Firefox);
+ 2. Prince supports more CSS `@page` features than Webkit, Presto (Opera) or Gecko (Firefox);
  3. Prince can be run from the command line, so doesn't require printing from the browser
  	(although [wkhtmltopdf](http://code.google.com/p/wkhtmltopdf/) does overcome this). 
 
