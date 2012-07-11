@@ -58,13 +58,17 @@ I'm using this for production output, that isn't an option.
 What works?
 -----------
 
-Nothing. Well, nearly nothing. I'm starting with the `Byword.css` file,
-made available on the [Byword website](http://bywordapp.com/extras/index.html).
-I've added:
+ - Citations (using the Pandoc syntax)
+ - Equations (using LaTeX syntax, processed using MathJax)
+ - Tables (using the Pandoc syntax)
+
+I'm starting with the `Byword.css` file, made available on the [Byword
+website](http://bywordapp.com/extras/index.html). I've added:
 
 - Times New Roman for the body; Helvetica for the headings.
-- Auto-numbering of figures (using CSS counters)
+- Auto-numbering of figures and tables (using CSS counters)
 - Better-than-default page margins (though work needed).
+
 
 
 TODO
