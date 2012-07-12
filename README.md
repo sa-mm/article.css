@@ -12,10 +12,9 @@ something like:
  	or HTML to preview the document;
  2. Convert to PDF using LaTeX (via Pandoc).
  
-This is works great, but recently I've been wondering if I need the
-LaTeX step at all. Since no journals/editors will accept LaTeX (at least
-not that I'm aware of), I'm only using LaTeX to produce a good-looking
-PDF document.
+This works great, but recently I've been wondering if I need LaTeX
+at all. Since few journals will accept LaTeX (at least that I'm aware of), 
+I'm only using LaTeX to produce a good-looking PDF document.
 
 My question here then: 
 
@@ -31,8 +30,8 @@ Pandoc came out with support for
 longer true. I can write citations in Pandoc's syntax (see
 [here](http://johnmacfarlane.net/pandoc/README.html#citations-1)) and
 these are converted appropriately &mdash; whether I'm using Markdown,
-PDF or DOCX. And this works with just about any citation style you want
-(see the full list
+PDF or DOCX. And this works with just about any citation style you might
+want (see the full list
 [here](https://github.com/citation-style-language/styles)).
 
 So, citation support is easy &mdash; just use Pandoc. The hard part is
@@ -43,7 +42,7 @@ printed, will look as good as `article.cls` using LaTeX. The file
 Usage
 -----
 
-Just call `pandoc` the `-css` option. I'm using the following script:
+Just call `pandoc` with the `-css` option. I'm using the following script:
 
      #!/bin/sh
      pandoc *.md -t HTML5 --bibliography="/Users/ewancarr/Documents/Work/Bibliography/BibTeX/library.bib" 
@@ -78,13 +77,18 @@ browsers can improve their CSS3 support, this may change.
 Features
 --------
 
- - Citations (using the Pandoc syntax)
- - Equations (using LaTeX syntax, processed using MathJax)
- - Tables, with auto-numbering (using the Pandoc syntax)
- - Figures, with auto-numbering
- - Times New Roman for the body; Helvetica for the headings (of course, 
+ - **Citations** (using the Pandoc syntax)
+ - **Equations** (using LaTeX syntax, processed using MathJax)
+ 	- Auto-numbering of equations: just surround the equation with  
+ 	  `<span class="eq">` and `</span>`. (Hopefully a future version of Pandoc
+ 	  will apply a CSS class to the equation itself, making this unnecessary). 
+ - **Tables** (using the Pandoc syntax; automatic numbering throughout the document)
+ - **Figures** (auto-numbering)
+ - **Fonts**
+ 	- Times New Roman for the body; Helvetica for the headings (of course, 
    can be easily changed).
- - Better-than-default page margins (though more work needed -- ideally would like 
+ - **Page layout**
+ 	- Better-than-default page margins (though more work needed &mdash; ideally would like 
    to replicate `article.cls` defaults).
    
 The CSS will also recognise the following: 
@@ -107,17 +111,15 @@ These are things I'd *like* to get working; I've no idea if they're actually pos
   adjusting the HTML from Pandoc)
 - Better defaults for page layout (based on `article.cls`)
 - Footnotes at the bottom of each page;
-- Check that MathML output works.
-- Improve table CSS.
-- ~~Fix line spacing around footnote markers~~ DONE
+- ~~Automatic numbering for equations~~
+- ~~Improve table CSS~~
+- ~~Fix line spacing around footnote markers~~
 - ~~Auto-recognise first `h2` titled "Abstract" and format accordingly.~~
 - Recognise first paragraph following `h2#abstract` and increase margins.
 - ???
-
-Contribute!
------------
-
-In case it's not obvious enough, *I'm still learning CSS*, and don't
-really know what I'm doing. All contributions are welcome!
+- Table footnotes, automatically detected for rows beginning with
+  `footnote` or similar, using CSS selectors (currently 
+  [not possible](http://stackoverflow.com/questions/1520429/css-3-content-selector))
 
 
+At some point, I'll write a real example file, with [less bacon](http://baconipsum.com/).

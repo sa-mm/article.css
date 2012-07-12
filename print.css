@@ -22,12 +22,14 @@ body {
     color: black;
     
     margin:20px;
-    font-family: "Times New Roman", "Baskerville", "Times New Roman", serif;
+    font-family: "Times New Roman", serif;
 	line-height: 19pt;
-	font-size: 14pt;
+	font-size: 12pt;
 	text-align: justify;
-	counter-reset: figcaption;
-	counter-reset: table;
+	counter-reset: figcaption 1;
+	counter-reset: table 1;
+	counter-reset: eq;
+/* 	letter-spacing:0.05em; */
 }
 
 a { 
@@ -43,10 +45,15 @@ h1, h2 {
     line-height:1.2em;
     margin-top:40px;
     padding-bottom: 5px;
-    font-family: "Arial", "Helvetica", "Arial";
+    font-family: "Helvetica", "Arial";
     font-weight: 700;
-    font-size: 18pt;
+    font-size: 16pt;
 }
+
+h2 {
+	font-size:14pt;
+	font-weight: normal;
+	}
 h1:first-child {
     margin-top:0;
     text-align: center;
@@ -62,11 +69,27 @@ h2#abstract {
 	font-variant: small-caps;
 }
 
+h2#abstract + p {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+
 h3, h4, h5, h6 {
     margin-top:12px;
     margin-bottom:0;
 	padding-bottom: 15px;
+    font-family: "Helvetica", "Arial";
 }
+
+h3.date {
+    font-weight: normal;
+    font-size: 12pt;
+    text-align: center;
+    font-family: "Helvetica", "Arial";
+    margin-top: 2em;
+    margin-bottom: 2em;
+    }
 h5, h6 {
     font-size:0.9em;
     line-height:1.0em;
@@ -79,6 +102,9 @@ p {
 p:last-child {
     margin:0;
 }
+
+
+
 #wrapper hr {
     width: 100%;
     margin: 3em auto;
@@ -148,6 +174,26 @@ font-weight: bold;
 
 }
 
+/* Equation numbering           */
+/* ===========================  */
+
+/* Currently, it's necessary to surround the equation in a
+  <span>, and apply the "eq" class to that. Hopefully a future
+  release of Pandoc will remove this requirement. */
+
+span.eq:before {
+	content: "(" counter(eq) ")";
+	counter-increment: eq;
+	float:right;
+	vertical-align:text-middle;
+	}
+
+span.eq {
+	text-align: center;
+	}
+
+/* ===========================  */
+
 
 
 pre {
@@ -189,6 +235,8 @@ table {
     margin-right: auto;
     margin-bottom: 24px;
     border-spacing: 0;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
 }
 table th {
     padding: 3px 10px;
@@ -205,21 +253,29 @@ table td {
     border-bottom: none;
     border-right: none;
 }
+
+
+/* Add border for the last row of the table.           */
+/* 		(Might be of use for table footnotes, later).  */
+/* tr:last-child td { border-top: 2px solid black; }   */
+	
+
 caption {
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 
 figure {
     display: block;
     text-align: center;
+    margin: 2em;
 }
 #wrapper img {
     border: none;
     display: block;
-    margin: 1em auto;
+    margin: 2em auto;
     max-width: 100%;
 }
 figcaption {
@@ -236,12 +292,20 @@ mark {
 
 .markdowncitation {
 }
+
 .footnote {
+/*     float: footnote; */
     font-size: 0.8em;
     vertical-align: super;
     color: black;
 }
 
+.footnoteRef, footnotes {
+/*     float: footnote; */
+    font-size: 0.8em;
+    vertical-align: super;
+    color: black;
+}
 sup {
         font-size: 0.8em;
         vertical-align: super;
@@ -256,6 +320,7 @@ sup {
 }
 
 /* custom formatting classes */
+
 
 .shadow {
     -webkit-box-shadow: 0 2px 4px #999;
@@ -367,7 +432,18 @@ body {
         font-family: "Helvetica", "Arial", sans serif;     
         text-align: left;
         font-weight: bold;
+        font-size: 14pt;
     }
+    h2 {     
+	    line-height:1.2em;
+	    margin-top:40px;
+	    padding-bottom: 5px;
+        font-family: "Helvetica", "Arial", sans serif;     
+        text-align: left;
+        font-weight: normal;
+        font-size:12pt;        
+    }
+    
     
     h1:first-child {
     	margin-top:100;
@@ -410,6 +486,7 @@ body {
 		color:black;
 	}
     .footnotes {
+/* 	    float: footnote; */
         page-break-before: always;
         color: black;
     }
@@ -423,12 +500,10 @@ body {
 
 h2#references {
 page-break-before: always;
-page-break-after: always;
 }
 
 h2#bibliography {
 page-break-before: always;
-page-break-after: always;
 }
 
 @page {
@@ -446,7 +521,6 @@ page-break-after: always;
 
 @page :left {
   @top-left {
-/*     content: string(title, odd); */
   }
 }
 
@@ -460,6 +534,5 @@ page-break-after: always;
 
 @page :right {
   @top-right {
-    content: string(header, first); 
   }
 }
