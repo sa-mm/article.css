@@ -1,5 +1,3 @@
-# Replacing LaTeX with Pandoc + CSS
-
 What's this?
 ------------
 
@@ -37,7 +35,31 @@ want (see the full list
 So, citation support is easy &mdash; just use Pandoc. The hard part is
 writing a CSS file that will take a HTML5 file from Pandoc and, when
 printed, will look as good as `article.cls` using LaTeX. The file
-`print.css` is the beginnings of this CSS file.
+`article.css` is the beginnings of this CSS file.
+
+Features
+--------
+
+ - **Citations** (using the Pandoc syntax)
+ - **Equations** (using LaTeX syntax, processed using MathJax)
+ 	- Auto-numbering of equations: just surround the equation with  
+ 	  `<span class="eq">` and `</span>`. (a future version of Pandoc
+ 	  make this unnecessary).
+ - **Tables** (using the Pandoc syntax; automatic numbering throughout the document)
+ - **Figures** (auto-numbering)
+ - **Fonts**
+ 	- Times New Roman for the body; Helvetica for the headings (of course, 
+   can be easily changed).
+ - **Page layout**
+ 	- Better-than-default page margins (though more work needed &mdash; ideally would like 
+   to replicate `article.cls` defaults).
+   
+The CSS will also recognise the following: 
+
+ - A `<h2>` header with the content "Abstract" will be centred and in small-caps.
+ - A `<h2>` header with the content "References" or "Bibliography" will be surrounded
+   by page breaks.
+
 
 Usage
 -----
@@ -47,7 +69,7 @@ Just call `pandoc` with the `-css` option. I'm using the following script:
      #!/bin/sh
      pandoc *.md -t HTML5 --bibliography="/Users/ewancarr/Documents/Work/Bibliography/BibTeX/library.bib" 
      	--csl="/Users/ewancarr/Dropbox/Code/Pandoc/Styles/harvard3.csl" 
-     	--css="/Users/ewancarr/Dropbox/Code/Projects/print.css/print.css"
+     	--css="/Users/ewancarr/Dropbox/Code/Projects/article.css/article.css"
      	-s --smart --ascii > draft.html
      
      prince draft.html
@@ -74,52 +96,26 @@ There is a free, non-commercial version, but this embeds a small watermark on th
 page. Right now, Prince's advanced `@page` support is worth this limitation, but if other
 browsers can improve their CSS3 support, this may change.
 
-Features
---------
-
- - **Citations** (using the Pandoc syntax)
- - **Equations** (using LaTeX syntax, processed using MathJax)
- 	- Auto-numbering of equations: just surround the equation with  
- 	  `<span class="eq">` and `</span>`. (Hopefully a future version of Pandoc
- 	  will apply a CSS class to the equation itself, making this unnecessary). 
- - **Tables** (using the Pandoc syntax; automatic numbering throughout the document)
- - **Figures** (auto-numbering)
- - **Fonts**
- 	- Times New Roman for the body; Helvetica for the headings (of course, 
-   can be easily changed).
- - **Page layout**
- 	- Better-than-default page margins (though more work needed &mdash; ideally would like 
-   to replicate `article.cls` defaults).
-   
-The CSS will also recognise the following: 
-
- - A `<h2>` header with the content "Abstract" will be centred and in small-caps.
- - A `<h2>` header with the content "References" or "Bibliography" will be surrounded
-   by page breaks.
-
-
-
 What's next?
 ------------
 
 These are things I'd *like* to get working; I've no idea if they're actually possible.
 
 - ~~Add automatic page numbering;~~
-- Figure out page breaks in CSS;
-- Place image caption above the image (Doesn't look possible in CSS; 
+- Better page breaks using CSS
+- Place image caption above the image (doesn't look possible in CSS; 
   requires placing `figcaption` above the content, which would mean 
   adjusting the HTML from Pandoc)
 - Better defaults for page layout (based on `article.cls`)
-- Footnotes at the bottom of each page;
+- Footnotes at the bottom of each page
+- Table footnotes, automatically detected for rows beginning with
+  `footnote` or similar, using CSS selectors (currently 
+  [not possible](http://stackoverflow.com/questions/1520429/css-3-content-selector))
 - ~~Automatic numbering for equations~~
 - ~~Improve table CSS~~
 - ~~Fix line spacing around footnote markers~~
 - ~~Auto-recognise first `h2` titled "Abstract" and format accordingly.~~
-- Recognise first paragraph following `h2#abstract` and increase margins.
-- ???
-- Table footnotes, automatically detected for rows beginning with
-  `footnote` or similar, using CSS selectors (currently 
-  [not possible](http://stackoverflow.com/questions/1520429/css-3-content-selector))
+- ~~Recognise first paragraph following `h2#abstract` and increase margins~~
 
 
 At some point, I'll write a real example file, with [less bacon](http://baconipsum.com/).
