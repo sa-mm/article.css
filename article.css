@@ -207,20 +207,13 @@ pre {
     border: 1px solid #ddd;
 }
 code {
-    white-space: nowrap;
-    font-size: 1.1em;
+	font-family: "Inconsolata", "Monaco", "Menlo", "Consolas", monospace;
     padding: 2px;
     -webkit-border-radius: 3px;
+    border-radius: 3px;
     background-color: #eee;
-    border: 1px solid #ddd;
 }
-pre code {
-    white-space: pre-wrap;
-    border: none;
-    padding: 0;
-    background-color: transparent;
-    -webkit-border-radius: 0;
-}
+
 blockquote {
     margin-left: 20px;
     margin-right: 0;
