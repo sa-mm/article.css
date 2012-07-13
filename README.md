@@ -1,41 +1,47 @@
-What's this?
-------------
+A CSS style for academic articles
+---------------------------------
 
-I write academic articles in Markdown. I used to use
-[MultiMarkdown](http://fletcherpenney.net/multimarkdown/); I now use
+I write articles in
+[Markdown](http://daringfireball.net/projects/markdown/) &mdash; a
+lightweight, readable plain text markup language. I used to use
+[MultiMarkdown](http://fletcherpenney.net/multimarkdown/), I now use
 [Pandoc](http://johnmacfarlane.net/pandoc/). My typical workflow goes
 something like:
 
  1. Write the draft in Markdown, using [Marked.app](http://markedapp.com/)
  	or HTML to preview the document;
- 2. Convert to PDF using LaTeX (via Pandoc).
+ 2. Convert to PDF using Pandoc (via LaTeX).
  
-This works great, but recently I've been wondering if I need LaTeX
-at all. Since few journals will accept LaTeX (at least that I'm aware of), 
-I'm only using LaTeX to produce a good-looking PDF document.
-
-My question here then: 
+This works great, but recently I've been wondering if I need LaTeX at
+all. Few journals will accept LaTeX (at least that I'm aware of); the
+standard format is Microsoft Word or (occasionally) PDF. My only use for
+LaTeX, therefore, is to produce good-looking PDF output. The question
+here, then:
 
 >**Can I make a HTML document that, when printed,
 looks as good as a document produced using LaTeX?** 
 
-The answer is almost
-certainly **no**, but I want to see how close I can get.
+The answer is almost certainly **no**, but I want to see how close I can
+get.
 
 Until recently I was reliant on LaTeX for it's BibTeX support. Since
 Pandoc came out with support for
 [citeproc-hs](http://gorgias.mine.nu/repos/citeproc-hs/), this is no
-longer true. I can write citations in Pandoc's syntax (see
+longer true. I can write citations in Pandoc syntax (see
 [here](http://johnmacfarlane.net/pandoc/README.html#citations-1)) and
 these are converted appropriately &mdash; whether I'm using Markdown,
-PDF or DOCX. And this works with just about any citation style you might
-want (see the full list
-[here](https://github.com/citation-style-language/styles)).
+PDF or DOCX (this works with just about [any citation
+style](https://github.com/citation-style-language/styles)) you might
+want).
 
-So, citation support is easy &mdash; just use Pandoc. The hard part is
-writing a CSS file that will take a HTML5 file from Pandoc and, when
-printed, will look as good as `article.cls` using LaTeX. The file
-`article.css` is the beginnings of this CSS file.
+Why?
+----
+
+- HTML preview is quicker than LaTeX preview.
+- Single format for web/print.
+- It's 2012.
+- To learn CSS.
+ 
 
 Features
 --------
@@ -53,6 +59,7 @@ Features
  - **Page layout**
  	- Better-than-default page margins (though more work needed &mdash; ideally would like 
    to replicate `article.cls` defaults).
+    - Page numbers (currently only supported by [Prince](http://www.princexml.com))
    
 The CSS will also recognise the following: 
 
@@ -66,22 +73,21 @@ Usage
 
 Just call `pandoc` with the `-css` option. I'm using the following script:
 
-     #!/bin/sh
-     pandoc *.md -t HTML5 --bibliography="/Users/ewancarr/Documents/Work/Bibliography/BibTeX/library.bib" 
-     	--csl="/Users/ewancarr/Dropbox/Code/Pandoc/Styles/harvard3.csl" 
-     	--css="/Users/ewancarr/Dropbox/Code/Projects/article.css/article.css"
-     	-s --smart --ascii > draft.html
-     
-     prince draft.html
-     open draft.pdf -a "/Applications/Skim.app"
+      #!/bin/sh
+      pandoc *.md -t HTML5 --bibliography="/path/to/BibTeX/library.bib" 
+      	--csl="/path/to/Styles/harvard3.csl" 
+      	--css="/path/to/article.css"
+      	-s --smart --ascii > draft.html
+      
+      prince draft.html
+      open draft.pdf -a "/Applications/Skim.app"
 
 
-Then print the resulting HTML file in a browser, and choose
-"Save to PDF". I've gotten best results with [Opera
-Next](http://www.opera.com/browser/next/), the beta version of Opera.
-This currently has better support for the `@page` CSS selector that
-Webkit or Gecko (although it's still very limited and this is likely to
-change in future).
+Then open the resulting HTML file in a browser and print to PDF. I've
+had best results with [Opera Next](http://www.opera.com/browser/next/),
+the beta version of Opera. This currently has better support for the
+`@page` CSS selector that Webkit or Gecko (although it's still very
+limited and this is likely to change in future).
 
 I'm also investigating using [Prince](http://www.princexml.com/) to convert
 HTML to PDF. Prince has several advantages:
@@ -101,21 +107,28 @@ What's next?
 
 These are things I'd *like* to get working; I've no idea if they're actually possible.
 
-- ~~Add automatic page numbering;~~
-- Better page breaks using CSS
-- Place image caption above the image (doesn't look possible in CSS; 
-  requires placing `figcaption` above the content, which would mean 
-  adjusting the HTML from Pandoc)
-- Better defaults for page layout (based on `article.cls`)
-- Footnotes at the bottom of each page
-- Table footnotes, automatically detected for rows beginning with
-  `footnote` or similar, using CSS selectors (currently 
-  [not possible](http://stackoverflow.com/questions/1520429/css-3-content-selector))
-- ~~Automatic numbering for equations~~
-- ~~Improve table CSS~~
-- ~~Fix line spacing around footnote markers~~
-- ~~Auto-recognise first `h2` titled "Abstract" and format accordingly.~~
-- ~~Recognise first paragraph following `h2#abstract` and increase margins~~
-
-
-At some point, I'll write a real example file, with [less bacon](http://baconipsum.com/).
+- *Tables*
+	- Support for long tables (i.e. tables with page breaks).
+	- Table footnotes, automatically detected for rows beginning with
+	  `footnote` or similar, using CSS selectors (currently 
+	  [not possible](http://stackoverflow.com/questions/1520429/css-3-content-selector))
+	- Decimal alignment (i.e. `dcolumn`) 
+	- ~~Improve table CSS~~
+- *Page layout*
+	- Better page breaks using CSS;
+	- Better default layout (based on `article.cls`)	
+	- Footnotes (rather than endnotes)
+	- ~~Fix line spacing around footnote markers~~
+	- ~~Automatic page numbering~~
+- *Images*
+	- Place image caption above the image (doesn't look possible in CSS; 
+	  requires placing `figcaption` above the content, which would mean 
+	  adjusting the HTML from Pandoc)
+- *Equations*
+	- Better support for PrinceXML (MathJax isn't supported at present)
+	- ~~Automatic numbering for equations~~
+- *Misc*
+	- Clean up the CSS
+	- Write a better example file, with [less bacon](http://baconipsum.com/).
+	- ~~Auto-recognise first `h2` titled "Abstract" and format accordingly.~~
+	- ~~Recognise first paragraph following `h2#abstract` and increase margins~~
