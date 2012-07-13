@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>article.css by ewancarr</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>article.css</h1>
+        <p>Replacing LaTeX with HTML + CSS</p>
+        <p class="view"><a href="https://github.com/ewancarr/article.css">View the Project on GitHub <small>ewancarr/article.css</small></a></p>
+        <ul>
+          <li><a href="https://github.com/ewancarr/article.css/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/ewancarr/article.css/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/ewancarr/article.css">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>A CSS style for academic articles</h2>
+
+<p>I write articles in
+<a href="http://daringfireball.net/projects/markdown/">Markdown</a> — a
+lightweight, readable plain text markup language. I used to use
+<a href="http://fletcherpenney.net/multimarkdown/">MultiMarkdown</a>, I now use
+<a href="http://johnmacfarlane.net/pandoc/">Pandoc</a>. My typical workflow goes
+something like:</p>
+
+<ol>
+<li>Write the draft in Markdown, using <a href="http://markedapp.com/">Marked.app</a>
+or HTML to preview the document;</li>
+<li>Convert to PDF using Pandoc (via LaTeX).</li>
+</ol><p>This works great, but recently I've been wondering if I need LaTeX at
+all. Few journals will accept LaTeX (at least that I'm aware of); the
+standard format is Microsoft Word or (occasionally) PDF. My only use for
+LaTeX, therefore, is to produce good-looking PDF output. The question
+here, then:</p>
+
+<blockquote>
+<p><strong>Can I make a HTML document that, when printed,
+looks as good as a document produced using LaTeX?</strong> </p>
+</blockquote>
+
+<p>The answer is almost certainly <strong>no</strong>, but I want to see how close I can
+get.</p>
+
+<p>Until recently I was reliant on LaTeX for it's BibTeX support. Since
+Pandoc came out with support for
+<a href="http://gorgias.mine.nu/repos/citeproc-hs/">citeproc-hs</a>, this is no
+longer true. I can write citations in Pandoc syntax (see
+<a href="http://johnmacfarlane.net/pandoc/README.html#citations-1">here</a>) and
+these are converted appropriately — whether I'm using Markdown,
+PDF or DOCX (this works with just about <a href="https://github.com/citation-style-language/styles">any citation
+style</a>) you might
+want).</p>
+
+<h2>Why?</h2>
+
+<ul>
+<li>HTML preview is quicker than LaTeX preview.</li>
+<li>Single format for web/print.</li>
+<li>It's 2012.</li>
+<li>To learn CSS.</li>
+</ul><h2>Features</h2>
+
+<ul>
+<li>
+<strong>Citations</strong> (using the Pandoc syntax)</li>
+<li>
+<strong>Equations</strong> (using LaTeX syntax, processed using MathJax)
+
+<ul>
+<li>Auto-numbering of equations: just surround the equation with<br><code>&lt;span class="eq"&gt;</code> and <code>&lt;/span&gt;</code>. (a future version of Pandoc
+make this unnecessary).</li>
+</ul>
+</li>
+<li>
+<strong>Tables</strong> (using the Pandoc syntax; automatic numbering throughout the document)</li>
+<li>
+<strong>Figures</strong> (auto-numbering)</li>
+<li>
+<strong>Fonts</strong>
+
+<ul>
+<li>Times New Roman for the body; Helvetica for the headings (of course, 
+can be easily changed).</li>
+</ul>
+</li>
+<li>
+<strong>Page layout</strong>
+
+<ul>
+<li>Better-than-default page margins (though more work needed — ideally would like 
+to replicate <code>article.cls</code> defaults).</li>
+<li>Page numbers (currently only supported by <a href="http://www.princexml.com">Prince</a>)</li>
+</ul>
+</li>
+</ul><p>The CSS will also recognise the following: </p>
+
+<ul>
+<li>A <code>&lt;h2&gt;</code> header with the content "Abstract" will be centred and in small-caps.</li>
+<li>A <code>&lt;h2&gt;</code> header with the content "References" or "Bibliography" will be surrounded
+by page breaks.</li>
+</ul><h2>Usage</h2>
+
+<p>Just call <code>pandoc</code> with the <code>-css</code> option. I'm using the following script:</p>
+
+<pre><code>  #!/bin/sh
+  pandoc *.md -t HTML5 --bibliography="/path/to/BibTeX/library.bib" 
+    --csl="/path/to/Styles/harvard3.csl" 
+    --css="/path/to/article.css"
+    -s --smart --ascii &gt; draft.html
+
+  prince draft.html
+  open draft.pdf -a "/Applications/Skim.app"
+</code></pre>
+
+<p>Then open the resulting HTML file in a browser and print to PDF. I've
+had best results with <a href="http://www.opera.com/browser/next/">Opera Next</a>,
+the beta version of Opera. This currently has better support for the
+<code>@page</code> CSS selector that Webkit or Gecko (although it's still very
+limited and this is likely to change in future).</p>
+
+<p>I'm also investigating using <a href="http://www.princexml.com/">Prince</a> to convert
+HTML to PDF. Prince has several advantages:</p>
+
+<ol>
+<li>The default output from Prince looks <em>much</em> better; </li>
+<li>Prince supports more CSS <code>@page</code> features than Webkit, Presto (Opera) or Gecko (Firefox);</li>
+<li>Prince can be run from the command line, so doesn't require printing from the browser
+(although <a href="http://code.google.com/p/wkhtmltopdf/">wkhtmltopdf</a> does overcome this). </li>
+</ol><p>The downsides are mainly cost. Prince is <a href="http://www.princexml.com/purchase/">extremely expensive</a>. 
+There is a free, non-commercial version, but this embeds a small watermark on the first
+page. Right now, Prince's advanced <code>@page</code> support is worth this limitation, but if other
+browsers can improve their CSS3 support, this may change.</p>
+
+<h2>What's next?</h2>
+
+<p>These are things I'd <em>like</em> to get working; I've no idea if they're actually possible.</p>
+
+<ul>
+<li>
+<em>Tables</em>
+
+<ul>
+<li>Support for long tables (i.e. tables with page breaks).</li>
+<li>Table footnotes, automatically detected for rows beginning with
+<code>footnote</code> or similar, using CSS selectors (currently 
+<a href="http://stackoverflow.com/questions/1520429/css-3-content-selector">not possible</a>)</li>
+<li>Decimal alignment (i.e. <code>dcolumn</code>) </li>
+<li><del>Improve table CSS</del></li>
+</ul>
+</li>
+<li>
+<em>Page layout</em>
+
+<ul>
+<li>Better page breaks using CSS;</li>
+<li>Better default layout (based on <code>article.cls</code>)<br>
+</li>
+<li>Footnotes (rather than endnotes)</li>
+<li><del>Fix line spacing around footnote markers</del></li>
+<li><del>Automatic page numbering</del></li>
+</ul>
+</li>
+<li>
+<em>Images</em>
+
+<ul>
+<li>Place image caption above the image (doesn't look possible in CSS; 
+requires placing <code>figcaption</code> above the content, which would mean 
+adjusting the HTML from Pandoc)</li>
+</ul>
+</li>
+<li>
+<em>Equations</em>
+
+<ul>
+<li>Better support for PrinceXML (MathJax isn't supported at present)</li>
+<li><del>Automatic numbering for equations</del></li>
+</ul>
+</li>
+<li>
+<em>Misc</em>
+
+<ul>
+<li>Clean up the CSS</li>
+<li>Write a better example file, with <a href="http://baconipsum.com/">less bacon</a>.</li>
+<li><del>Auto-recognise first <code>h2</code> titled "Abstract" and format accordingly.</del></li>
+<li><del>Recognise first paragraph following <code>h2#abstract</code> and increase margins</del></li>
+</ul>
+</li>
+</ul>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/ewancarr">ewancarr</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+    
+  </body>
+</html>
